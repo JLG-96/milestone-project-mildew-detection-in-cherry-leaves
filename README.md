@@ -112,7 +112,7 @@ This notebook builds, trains, and evaluates a Convolutional Neural Network (CNN)
 - Application of early stopping to prevent overfitting
 - Evaluation using test data, accuracy/loss curves, and a confusion matrix
 - Saving the model and test performance metrics
-- Concludes with predictions on unseen data and a summary of outcomes
+- Concludes with model evaluation on unseen test data, saving accuracy/loss to a JSON file for dashboard integration
 
 This notebook supports the second business requirement by enabling real-time prediction of whether a cherry leaf is healthy or has mildew.
 

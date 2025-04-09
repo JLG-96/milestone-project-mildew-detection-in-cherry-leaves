@@ -1,10 +1,7 @@
-import joblib
+import json
 import os
 
-
 def load_test_evaluation(version):
-    """
-    Load test performance results from disk
-    """
-    model_path = os.path.join("outputs", version, "test_evaluation", "test_evaluation.pkl")
-    return joblib.load(model_path)
+    model_path = os.path.join("outputs", version, "test_evaluation.json")
+    with open(model_path, "r") as f:
+        return json.load(f)
