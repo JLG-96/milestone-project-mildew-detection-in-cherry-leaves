@@ -47,7 +47,7 @@ def page_mildew_detector_body():
             plot_predictions_probabilities(pred_proba, pred_class)
 
             df_report = df_report._append(
-                {"Filename": image.name, "Prediction": pred_class, "Confidence (%)": round(float(np.max(pred_proba)) * 100, 2)},
+                {"Filename": image.name, "Prediction": pred_class,"Confidence (%)": round(float(np.squeeze(pred_proba)) * 100, 2)},
                 ignore_index=True
             )
 

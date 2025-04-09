@@ -2,7 +2,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.image import imread
-from src.model_loader import load_test_evaluation  # make sure this points to your correct module
+from src.machine_learning.evaluate_clf import load_test_evaluation
 
 
 def page_ml_performance_metrics():
