@@ -19,8 +19,8 @@ To save time in this process, the IT team suggested an ML system that detects in
 
 | Business Requirement | ML Task                         | Visualisation Task                          |
 |----------------------|----------------------------------|---------------------------------------------|
-| Visual differentiation | Not required (visual study)     | Image montage of healthy vs infected leaves |
 | Instant prediction    | Image classification with CNN    | Accuracy/loss plots, confusion matrix        |
+| Visual differentiation       | Not required (visual only) | Image montage, average image comparison, difference image |
 
 ## ML Business Case
 
@@ -38,9 +38,9 @@ To save time in this process, the IT team suggested an ML system that detects in
 | Page              | Content                                                                 |
 |------------------|-------------------------------------------------------------------------|
 | Home             | Project overview and instructions                                       |
-| Visual Study     | Image samples of healthy vs mildew-affected leaves                     |
 | Model Prediction | Image uploader and prediction result display                            |
 | Model Evaluation | Training accuracy/loss, confusion matrix, classification report         |
+| Visual Study     | Shows sample healthy and mildew-affected leaves. Includes image montage, average image comparisons, and pixel-level difference image. Supports visual differentiation goal. |
 
 > Note: Pages will be implemented in `Streamlit`, and this section will be updated as the dashboard is developed.
 
@@ -71,9 +71,10 @@ To save time in this process, the IT team suggested an ML system that detects in
 ## Main Data Analysis and Machine Learning Libraries
 
 - `os`, `shutil`: File and directory operations
-- `Pillow (PIL)`: Image opening and validation
-- `matplotlib.pyplot`: Visualisations (image samples, charts)
-- `tensorflow.keras`: Model creation and training (planned)
+- `Pillow (PIL)`: Image loading and validation
+- `numpy`: Used to calculate average and difference images
+- `matplotlib.pyplot`: Used for image display and difference map plotting
+- `tensorflow.keras`: For CNN model creation and training (planned)
 
 ## Credits
 
