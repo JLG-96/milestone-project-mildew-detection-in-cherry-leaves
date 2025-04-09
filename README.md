@@ -70,11 +70,14 @@ To save time in this process, the IT team suggested an ML system that detects in
 
 ## Main Data Analysis and Machine Learning Libraries
 
+## Main Data Analysis and Machine Learning Libraries
+
 - `os`, `shutil`: File and directory operations
 - `Pillow (PIL)`: Image loading and validation
-- `numpy`: Used to calculate average and difference images
-- `matplotlib.pyplot`: Used for image display and difference map plotting
-- `tensorflow.keras`: For CNN model creation and training (planned)
+- `numpy`: Used to calculate average and difference images, and format model input
+- `matplotlib.pyplot`: Used for image display and prediction probability charts
+- `tensorflow.keras`: For CNN model creation and prediction
+- `streamlit`: To build an interactive user interface
 
 ## Notebook Overviews
 
