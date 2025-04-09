@@ -1,4 +1,4 @@
-# Cherry Leaf Mildew Detection 
+# Cherry Leaf Mildew Detection – Predictive Analytics Dashboard
 
 ## Dataset Content
 
@@ -13,7 +13,6 @@ To save time in this process, the IT team suggested an ML system that detects in
 
 - 1 - The client is interested in conducting a study to visually differentiate a healthy cherry leaf from one with powdery mildew.
 - 2 - The client is interested in predicting if a cherry leaf is healthy or contains powdery mildew.
-
 
 ## The rationale to map the business requirements to the Data Visualisations and ML tasks
 
@@ -30,6 +29,7 @@ To save time in this process, the IT team suggested an ML system that detects in
 - **Success Metrics:** High accuracy, balanced precision/recall, generalization to unseen data.
 - **Output:** Prediction label and confidence score.
 - **Relevance:** Enables large-scale, fast inspection across farms.
+- **Limitation:** The model has been trained solely on cherry leaf images and is not designed to identify whether an uploaded image is a cherry leaf or not. If a non-leaf image is accidentally uploaded, the model will still classify it as either "healthy" or "powdery mildew," as it does not have a rejection mechanism or multi-class structure. This reflects a typical limitation of binary classifiers, and highlights the importance of ensuring only cherry leaf images are used during prediction.
 
 ## Dashboard Design
 
@@ -82,7 +82,9 @@ To save time in this process, the IT team suggested an ML system that detects in
 ## Notebook Overviews
 
 ### `01 - DataCollection.ipynb`
+
 This notebook is responsible for loading and preparing the dataset for modelling. It includes:
+
 - Verification and cleanup of the image directory
 - Validation that all image files are in a supported format
 - Splitting the dataset into `train`, `validation`, and `test` folders
@@ -94,7 +96,9 @@ This notebook supports the business requirement by ensuring a high-quality and w
 ---
 
 ### `02 - DataVisualization.ipynb`
+
 This notebook explores and visualises the image data. It includes:
+
 - Calculation of image dimensions (width, height) across the dataset
 - Image montage previewing healthy vs mildew-affected leaves
 - Average image and pixel-level difference between healthy and mildew categories
@@ -106,13 +110,16 @@ This notebook supports the first business requirement by visually highlighting d
 ---
 
 ### `03 - Modelling and Evaluating.ipynb`
+
 This notebook builds, trains, and evaluates a Convolutional Neural Network (CNN). It includes:
+
 - Data augmentation using `ImageDataGenerator`
 - CNN model creation and compilation using `tensorflow.keras`
 - Application of early stopping to prevent overfitting
 - Evaluation using test data, accuracy/loss curves, and a confusion matrix
 - Saving the model and test performance metrics
-- Concludes with model evaluation on unseen test data, saving accuracy/loss to a JSON file for dashboard integration
+- Concludes with model evaluation on unseen test data, saving accuracy/loss to a JSON file for dashboard integration.
+- It is important to note that, as expected, the model misclassifies non-cherry leaf images (e.g., a dog), as it was trained exclusively on cherry leaf data. This confirms the model's appropriate specialization and highlights the importance of using representative input data during inference.
 
 This notebook supports the second business requirement by enabling real-time prediction of whether a cherry leaf is healthy or has mildew.
 
@@ -136,6 +143,16 @@ This project uses a modular structure with separate folders for notebooks, dashb
   - `data_management.py`: Utility to download results as a timestamped CSV
   - `machine_learning/predictive_analysis.py`: Contains logic for resizing images, loading the model, making predictions, and plotting prediction probabilities
 
+## App Testing
+
+The final Streamlit app was tested using a range of inputs to confirm correct classification and to assess model behaviour under edge cases.
+
+- A healthy cherry leaf image was correctly classified as *healthy*.
+- A mildew-infected cherry leaf image was correctly classified as *powdery mildew*.
+- A non-cherry image (e.g. a dog) was misclassified, which is expected behaviour due to the model's binary classification setup and domain-specific training.
+
+This testing confirmed the model is functioning reliably within its intended use case - the misclassification of non-leaf inputs also demonstrated the model's limitations.
+
 ## Credits
 
 - In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism.
@@ -154,8 +171,8 @@ This project uses a modular structure with separate folders for notebooks, dashb
 
 ### Media
 
-- The photos used on the home and sign-up page are from This Open-Source site.
-- The images used for the gallery page were taken from this other open-source site.
+- Images displayed throughout the app are sourced from the cherry leaf dataset provided on [Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves).
+- Additional test images used during app testing (e.g. downloaded leaf and non-leaf images) were sourced from public web searches for educational purposes only and are not part of the final deployed app.
 
 ## Acknowledgements (optional)
 
