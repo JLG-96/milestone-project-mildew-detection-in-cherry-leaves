@@ -3,47 +3,53 @@ from PIL import Image
 import numpy as np
 import pandas as pd
 
+from src.data_management import download_dataframe_as_csv
+from src.machine_learning.predictive_analysis import (
+    resize_input_image,
+    load_model_and_predict,
+    plot_predictions_probabilities
+)
+
 def page_mildew_detector_body():
     st.info(
-        f"* The client wants to predict whether a given cherry leaf is healthy or infected with powdery mildew."
+        "* The client wants to predict whether a given cherry leaf is healthy or infected with powdery mildew."
     )
 
     st.write(
-        f"* Upload an image of a cherry leaf (JPEG/PNG). The model will classify it as **Healthy** or **Powdery Mildew**."
+        "* Upload a cherry leaf image. The model will classify it as **Healthy** or **Powdery Mildew** based on visual features."
     )
 
     st.write("---")
 
-    # Upload one or more images
     uploaded_images = st.file_uploader(
-        "Upload leaf images for prediction", 
-        type=["png", "jpg", "jpeg"], 
+        label="Upload cherry leaf image(s). You may select more than one.",
+        type=['png', 'jpg', 'jpeg'],
         accept_multiple_files=True
     )
 
     if uploaded_images:
-        model = load_mildew_model()  # Loads from outputs/v1/...
+        version = "v1"
+        df_report = pd.DataFrame([])
 
-        results = []
-        for img_file in uploaded_images:
-            img = Image.open(img_file).convert("RGB")
-            st.image(img, caption=f"Uploaded Image: {img_file.name}", use_column_width=True)
+        for image in uploaded_images:
+            img_pil = Image.open(image)
+            st.info(f"Image uploaded: **{image.name}**")
+            st.image(img_pil, caption=f"{image.name}", use_column_width=True)
 
-            # Preprocess image
-            resized = img.resize((256, 256))
-            img_array = np.expand_dims(np.array(resized) / 255.0, axis=0)
+            # Preprocess and predict
+            img_tensor = resize_input_image(img=img_pil, version=version)
+            pred_proba, pred_class = load_model_and_predict(img_tensor, version=version)
 
-            # Predict
-            prediction = model.predict(img_array)[0][0]
-            pred_label = "Powdery Mildew" if prediction > 0.5 else "Healthy"
-            confidence = round(prediction * 100, 2) if prediction > 0.5 else round((1 - prediction) * 100, 2)
+            # Plot results
+            plot_predictions_probabilities(pred_proba, pred_class)
 
-            st.success(f"Prediction: **{pred_label}** ({confidence}% confidence)")
-            st.write("---")
+            df_report = df_report._append(
+                {"Filename": image.name, "Prediction": pred_class, "Confidence (%)": round(float(np.max(pred_proba)) * 100, 2)},
+                ignore_index=True
+            )
 
-            results.append({"Filename": img_file.name, "Prediction": pred_label, "Confidence (%)": confidence})
-
-        # Display all results
-        if results:
-            df = pd.DataFrame(results)
-            st.dataframe(df)
+        # Show prediction table
+        if not df_report.empty:
+            st.success("Prediction Summary")
+            st.dataframe(df_report)
+            st.markdown(download_dataframe_as_csv(df_report), unsafe_allow_html=True)
