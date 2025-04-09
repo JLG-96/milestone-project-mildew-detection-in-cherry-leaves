@@ -1,14 +1,21 @@
 # Jupyter Notebooks
 *.ipynb
+jupyter_notebooks/
+.ipynb_checkpoints/
 
-# Raw datasets
+# Raw datasets and unused artifacts
 inputs/
+*.csv
+*.json
+kaggle.json
+
+# Outputs (exclude everything except the model .h5 file)
 outputs/v1/*.png
 outputs/v1/*.json
-outputs/v1/test_evaluation/test_evaluation.pkl
+outputs/v1/test_evaluation/
+outputs/v1/labels_distribution.png
+outputs/v1/model_training_*.png
 
-# Not needed for app to run
-jupyter_notebooks/
+# Not needed for Streamlit app
 README.md
-kaggle.json
-*.csv
+tests/
