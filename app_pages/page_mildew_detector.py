@@ -1,11 +1,7 @@
-# app_pages/page_mildew_detector.py
-
 import streamlit as st
 from PIL import Image
 import numpy as np
 import pandas as pd
-
-from src.load_model import load_mildew_model
 
 def page_mildew_detector_body():
     st.info(
