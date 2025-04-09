@@ -4,11 +4,12 @@ import numpy as np
 import pandas as pd
 
 from src.data_management import download_dataframe_as_csv
+from src.model_loader import load_mildew_model
 from src.machine_learning.predictive_analysis import (
     resize_input_image,
-    load_model_and_predict,
     plot_predictions_probabilities
 )
+
 
 def page_mildew_detector_body():
     st.info(
@@ -29,6 +30,7 @@ def page_mildew_detector_body():
 
     if uploaded_images:
         version = "v1"
+        model = load_mildew_model(version)
         df_report = pd.DataFrame([])
 
         for image in uploaded_images:
@@ -38,7 +40,8 @@ def page_mildew_detector_body():
 
             # Preprocess and predict
             img_tensor = resize_input_image(img=img_pil, version=version)
-            pred_proba, pred_class = load_model_and_predict(img_tensor, version=version)
+            pred_proba = model.predict(img_tensor)
+            pred_class = "Powdery Mildew" if pred_proba[0][0] > 0.5 else "Healthy"
 
             # Plot results
             plot_predictions_probabilities(pred_proba, pred_class)
