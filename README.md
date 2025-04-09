@@ -172,10 +172,13 @@ The final Streamlit app was tested using a range of inputs to confirm correct cl
 
 This testing confirmed the model is functioning reliably within its intended use case - the misclassification of non-leaf inputs also demonstrated the model's limitations.
 
-## Credits
+## Future Improvements
 
-- In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism.
-- You can break the credits section up into Content and Media, depending on what you have included in your project.
+- Add a class verification step to reject non-leaf images.
+- Introduce a multi-class model for broader use across other crop types.
+- Improve loading speed by moving to a paid hosting tier or lightweight model.
+
+## Credits
 
 ### Content
 
@@ -187,12 +190,14 @@ This testing confirmed the model is functioning reliably within its intended use
   - The business problem and dataset were defined by the Code Institute Cherry Leaves project brief.
 - Some utility function logic was adapted from Code Institute learning materials.
 - All code has been reviewed and adapted where necessary to meet the specific goals of this project and ensure understanding and independent implementation.
+- All external code was either provided by Code Institute, openly accessible for educational use, or adapted with appropriate understanding and acknowledgement.
+- Help found
 
 ### Media
 
 - Images displayed throughout the app are sourced from the cherry leaf dataset provided on [Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves).
 - Additional test images used during app testing (e.g. downloaded leaf and non-leaf images) were sourced from public web searches for educational purposes only and are not part of the final deployed app.
 
-## Acknowledgements (optional)
+## Acknowledgements
 
-- Thank the people who provided support throughout this project.
+- Thanks to the Code Institute Slack community and tutors for their support and guidance, particularly when troubleshooting deployment issues and `.slugignore` configuration.
