@@ -118,6 +118,24 @@ This notebook supports the second business requirement by enabling real-time pre
 
 ---
 
+## Source Code Structure
+
+This project uses a modular structure with separate folders for notebooks, dashboard pages, and supporting code.
+
+- `jupyter_notebooks/`  
+  Contains the three core notebooks for data collection, visualisation, and modelling.
+
+- `app_pages/`  
+  Contains the Streamlit dashboard pages:
+  - `page_summary.py`: Overview of the project and business requirements
+  - `page_cherry_leaves_visualizer.py`: Visual study comparing healthy and mildew-affected leaves
+  - `page_mildew_detector.py`: Upload interface to predict leaf health from an image
+
+- `src/`  
+  Holds reusable scripts:
+  - `data_management.py`: Utility to download results as a timestamped CSV
+  - `machine_learning/predictive_analysis.py`: Contains logic for resizing images, loading the model, making predictions, and plotting prediction probabilities
+
 ## Credits
 
 - In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism.
@@ -131,6 +149,7 @@ This notebook supports the second business requirement by enabling real-time pre
   - The `DataCollection`, `DataVisualisation`, and `Modelling and Evaluating` notebooks.
   - The multi-page Streamlit structure (`app_pages/`, `src/` folder and routing).
   - The business problem and dataset were defined by the Code Institute Cherry Leaves project brief.
+- Some utility function logic was adapted from Code Institute learning materials.
 - All code has been reviewed and adapted where necessary to meet the specific goals of this project and ensure understanding and independent implementation.
 
 ### Media
