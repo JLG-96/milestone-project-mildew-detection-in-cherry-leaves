@@ -76,6 +76,45 @@ To save time in this process, the IT team suggested an ML system that detects in
 - `matplotlib.pyplot`: Used for image display and difference map plotting
 - `tensorflow.keras`: For CNN model creation and training (planned)
 
+## Notebook Overviews
+
+### `01 - DataCollection.ipynb`
+This notebook is responsible for loading and preparing the dataset for modelling. It includes:
+- Verification and cleanup of the image directory
+- Validation that all image files are in a supported format
+- Splitting the dataset into `train`, `validation`, and `test` folders
+- Setting the file structure required for training image classification models
+- Summary cell outlining the conclusions and next steps
+
+This notebook supports the business requirement by ensuring a high-quality and well-organised dataset for downstream machine learning tasks.
+
+---
+
+### `02 - DataVisualization.ipynb`
+This notebook explores and visualises the image data. It includes:
+- Calculation of image dimensions (width, height) across the dataset
+- Image montage previewing healthy vs mildew-affected leaves
+- Average image and pixel-level difference between healthy and mildew categories
+- Confirmed image consistency and verified class balance
+- Final markdown cell includes conclusions and next steps
+
+This notebook supports the first business requirement by visually highlighting differences between healthy and infected leaves and confirming the dataset is balanced and suitable for modelling.
+
+---
+
+### `03 - Modelling and Evaluating.ipynb`
+This notebook builds, trains, and evaluates a Convolutional Neural Network (CNN). It includes:
+- Data augmentation using `ImageDataGenerator`
+- CNN model creation and compilation using `tensorflow.keras`
+- Application of early stopping to prevent overfitting
+- Evaluation using test data, accuracy/loss curves, and a confusion matrix
+- Saving the model and test performance metrics
+- Concludes with predictions on unseen data and a summary of outcomes
+
+This notebook supports the second business requirement by enabling real-time prediction of whether a cherry leaf is healthy or has mildew.
+
+---
+
 ## Credits
 
 - In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism.
