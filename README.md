@@ -42,7 +42,7 @@ To save time in this process, the IT team suggested an ML system that detects in
 | Model Evaluation | Training accuracy/loss, confusion matrix, classification report         |
 | Visual Study     | Shows sample healthy and mildew-affected leaves. Includes image montage, average image comparisons, and pixel-level difference image. Supports visual differentiation goal. |
 
-> Note: Pages will be implemented in `Streamlit`, and this section will be updated as the dashboard is developed.
+> Note: All planned dashboard pages have been implemented using `Streamlit`.
 
 ## Bugs
 
@@ -53,22 +53,41 @@ To save time in this process, the IT team suggested an ML system that detects in
 - **How it was resolved:** The file removal function was updated to use `os.walk()`, which recursively iterates through all directories and ensures only files are targeted for deletion.
 - **Outcome:** The issue was resolved successfully, and the cleaned dataset is now verified and usable for further analysis.
 
+### Slug Size / Deployment Challenges
+
+- **Issue:** Initial deployment to Heroku failed due to the compiled slug exceeding the 500MB limit.
+- **Why it occurred:** The project included large directories and unnecessary files (e.g., image datasets, test data, notebooks).
+- **How it was resolved:** A `.slugignore` file was created to exclude folders and files not required to run the Streamlit app.
+- **Outcome:** Deployment succeeded after switching to Render, which allows for larger project sizes and simpler configuration using a start command.
+
 ## Deployment
 
-### Heroku
+### Render
 
-- The App live link is: `https://YOUR_APP_NAME.herokuapp.com/`
-- Set the runtime.txt Python version to a [Heroku-20](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
-- The project was deployed to Heroku using the following steps.
+This project was deployed using [Render](https://render.com) on their free tier. The live web application can be accessed here:  
+**[https://project-mildew-detection.onrender.com](https://project-mildew-detection.onrender.com)**
 
-1. Log in to Heroku and create an App
-2. At the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button Open App on the top of the page to access your App.
-6. If the slug size is too large, then add large files not required for the app to the .slugignore file.
+### Notes on Deployment:
 
-## Main Data Analysis and Machine Learning Libraries
+- The app may take up to 30–60 seconds to load if it hasn't been accessed recently. This is due to cold starts on the free Render tier.
+- Once the application loads, it performs as expected.
+
+### Deployment Steps on Render:
+
+1. Create a free account at [render.com](https://render.com).
+2. Connect your GitHub repository to Render.
+3. Create a new **Web Service**, selecting the correct repository.
+4. Set the following options during configuration:
+   - **Build Command:**  
+     ```
+     pip install -r requirements.txt && ./setup.sh
+     ```
+   - **Start Command:**  
+     ```
+     streamlit run app.py --server.address=0.0.0.0 --server.port=10000
+     ```
+5. Specify the Python version (e.g. `3.10.12`) using a `runtime.txt` file or a `PYTHON_VERSION` environment variable.
+6. Click deploy and wait for the build process to complete.
 
 ## Main Data Analysis and Machine Learning Libraries
 
@@ -149,7 +168,7 @@ The final Streamlit app was tested using a range of inputs to confirm correct cl
 
 - A healthy cherry leaf image was correctly classified as *healthy*.
 - A mildew-infected cherry leaf image was correctly classified as *powdery mildew*.
-- A non-cherry image (e.g. a dog) was misclassified, which is expected behaviour due to the model's binary classification setup and domain-specific training.
+- A non-cherry image (e.g. a dog) was misclassified as either “healthy” or “powdery mildew,” which is expected due to the model's binary classification setup and exclusive training on cherry leaf data.
 
 This testing confirmed the model is functioning reliably within its intended use case - the misclassification of non-leaf inputs also demonstrated the model's limitations.
 
