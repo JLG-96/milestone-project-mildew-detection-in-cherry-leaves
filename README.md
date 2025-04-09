@@ -123,7 +123,12 @@ This notebook supports the second business requirement by enabling real-time pre
 ### Content
 
 - Dataset from [Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves)
-- Course material and lab notebooks provided by Code Institute
+- The overall structure of the project, including the Jupyter notebook workflows and the Streamlit dashboard layout, was based on materials and templates provided by Code Institute as part of the Predictive Analytics module.
+- Specific components adapted and customised include:
+  - The `DataCollection`, `DataVisualisation`, and `Modelling and Evaluating` notebooks.
+  - The multi-page Streamlit structure (`app_pages/`, `src/` folder and routing).
+  - The business problem and dataset were defined by the Code Institute Cherry Leaves project brief.
+- All code has been reviewed and adapted where necessary to meet the specific goals of this project and ensure understanding and independent implementation.
 
 ### Media
 
