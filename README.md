@@ -1,42 +1,4 @@
-# ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-## Template Instructions
-
-Welcome,
-
-This is the Code Institute student template for the Cherry Leaves project option in Predictive Analytics. We have preinstalled all of the tools you need to get started. It's perfectly okay to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
-
-You can safely delete the Template Instructions section of this README.md file and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
-
-## How to use this repo
-
-1. Use this template to create your GitHub project repo
-
-1. In your newly created repo click on the green Code button. 
-
-1. Then, from the Codespaces tab, click Create codespace on main.
-
-1. Wait for the workspace to open. This can take a few minutes.
-
-1. Open a new terminal and `pip3 install -r requirements.txt`
-
-1. Open the jupyter_notebooks directory, and click on the notebook you want to open.
-
-1. Click the kernel button and choose Python Environments.
-
-Note that the kernel says Python 3.12.1 as it inherits from the workspace, so it will be Python-3.12.1 as installed by Codespaces. To confirm this, you can use `! python --version` in a notebook code cell.
-
-## Cloud IDE Reminders
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, then you can create a new one with _Regenerate API Key_.
+# Cherry Leaf Mildew Detection 
 
 ## Dataset Content
 
@@ -52,26 +14,44 @@ To save time in this process, the IT team suggested an ML system that detects in
 - 1 - The client is interested in conducting a study to visually differentiate a healthy cherry leaf from one with powdery mildew.
 - 2 - The client is interested in predicting if a cherry leaf is healthy or contains powdery mildew.
 
-## Hypothesis and how to validate?
-
-- List here your project hypothesis(es) and how you envision validating it (them).
 
 ## The rationale to map the business requirements to the Data Visualisations and ML tasks
 
-- List your business requirements and a rationale to map them to the Data Visualisations and ML tasks.
+| Business Requirement | ML Task                         | Visualisation Task                          |
+|----------------------|----------------------------------|---------------------------------------------|
+| Visual differentiation | Not required (visual study)     | Image montage of healthy vs infected leaves |
+| Instant prediction    | Image classification with CNN    | Accuracy/loss plots, confusion matrix        |
 
 ## ML Business Case
 
-- In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
+- **Objective:** Reduce inspection time and increase early detection of mildew.
+- **Method:** Use a CNN model trained on labeled image data.
+- **Ideal Outcome:** A model that correctly classifies leaf images in real-time.
+- **Success Metrics:** High accuracy, balanced precision/recall, generalization to unseen data.
+- **Output:** Prediction label and confidence score.
+- **Relevance:** Enables large-scale, fast inspection across farms.
 
 ## Dashboard Design
 
-- List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items, that your dashboard library supports.
-- Finally, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project, you were confident you would use a given plot to display an insight, but later, you chose another plot type).
+- Planned
 
-## Unfixed Bugs
+| Page              | Content                                                                 |
+|------------------|-------------------------------------------------------------------------|
+| Home             | Project overview and instructions                                       |
+| Visual Study     | Image samples of healthy vs mildew-affected leaves                     |
+| Model Prediction | Image uploader and prediction result display                            |
+| Model Evaluation | Training accuracy/loss, confusion matrix, classification report         |
 
-- You will need to mention unfixed bugs and why they were unfixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable for consideration, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed.
+> Note: Pages will be implemented in `Streamlit`, and this section will be updated as the dashboard is developed.
+
+## Bugs
+
+### IsADirectoryError During Dataset Cleanup
+
+- **Issue:** While attempting to remove non-image files from the dataset, the script triggered an `IsADirectoryError` because it attempted to delete folders instead of files.
+- **Why it occurred:** The initial implementation used `os.listdir()` and assumed all items were files, but some were directories (e.g., `healthy`, `powdery_mildew` subfolders).
+- **How it was resolved:** The file removal function was updated to use `os.walk()`, which recursively iterates through all directories and ensures only files are targeted for deletion.
+- **Outcome:** The issue was resolved successfully, and the cleaned dataset is now verified and usable for further analysis.
 
 ## Deployment
 
@@ -90,7 +70,10 @@ To save time in this process, the IT team suggested an ML system that detects in
 
 ## Main Data Analysis and Machine Learning Libraries
 
-- Here, you should list the libraries used in the project and provide an example(s) of how you used these libraries.
+- `os`, `shutil`: File and directory operations
+- `Pillow (PIL)`: Image opening and validation
+- `matplotlib.pyplot`: Visualisations (image samples, charts)
+- `tensorflow.keras`: Model creation and training (planned)
 
 ## Credits
 
@@ -99,9 +82,8 @@ To save time in this process, the IT team suggested an ML system that detects in
 
 ### Content
 
-- The text for the Home page was taken from Wikipedia Article A.
-- Instructions on how to implement form validation on the Sign-Up page were taken from [Specific YouTube Tutorial](https://www.youtube.com/).
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/).
+- Dataset from [Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves)
+- Course material and lab notebooks provided by Code Institute
 
 ### Media
 
