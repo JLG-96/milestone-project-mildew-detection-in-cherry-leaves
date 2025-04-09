@@ -1,0 +1,14 @@
+# Jupyter Notebooks
+*.ipynb
+
+# Raw datasets
+inputs/
+outputs/v1/*.png
+outputs/v1/*.json
+outputs/v1/test_evaluation/test_evaluation.pkl
+
+# Not needed for app to run
+jupyter_notebooks/
+README.md
+kaggle.json
+*.csv
