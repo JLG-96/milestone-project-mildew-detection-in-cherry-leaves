@@ -1,3 +1,4 @@
+![Screenshot showing responsiveness of app](/assets/images/img1.png)
 
 ## Table of Contents
 
@@ -6,6 +7,11 @@
 - [Dataset Content](#dataset-content)
 - [Business Requirements](#business-requirements)
   - [Specific requirements](#specific-requirements)
+- [Hypotheses and Validation](#hypotheses-and-validation)
+  - [Hypothesis 1](#hypothesis-1)
+  - [Hypothesis 1 Validation](#hypothesis-1-validation)
+  - [Hypothesis 2](#hypothesis-2)
+  - [Hypothesis 2 Validation](#hypothesis-2-validation)
 - [The rationale to map the business requirements to the Data Visualisations and ML tasks](#the-rationale-to-map-the-business-requirements-to-the-data-visualisations-and-ml-tasks)
 - [ML Business Case](#ml-business-case)
 - [Dashboard Design](#dashboard-design)
@@ -79,6 +85,51 @@ To meet these business requirements, the solution must:
 
 2. Develop a **Convolutional Neural Network (CNN)** capable of predicting whether a given cherry leaf is healthy or infected with powdery mildew.
 
+## Hypotheses and Validation
+
+To guide development and ensure the project stays aligned with the business requirements, three hypotheses were proposed and tested. These hypotheses relate to the dataset, model behavior and prediction performance. They were validated through visual analysis, exploratory data techniques and machine learning metrics.
+
+### Hypothesis 1
+
+Our first hypothesis is that there is a clear visual distinction between healthy cherry leaves and those infected with powdery mildew. Specifically, we expect mildew-infected leaves to show a consistent pattern of pale patches or powdery appearance that is visually identifiable.
+
+### Hypothesis 1 Validation
+
+To validate this hypothesis, we conducted a detailed visual study using the images provided by Farmy & Foods. We examined multiple healthy and mildew-infected leaves, then generated average and variability images to highlight differences.
+
+Below is a selection of healthy cherry leaves:
+
+![Healthy Leaf Samples](/assets/images/img2.png)
+
+And below are examples of leaves affected by powdery mildew:
+
+![Mildew-Infected Leaf Samples](/assets/images/img3.png)
+
+To quantify the visual patterns, we transformed each set into arrays and calculated both the **average image** and the **variability image** for each class:
+
+**Healthy:**
+
+![Healthy Average and variability](/assets/images/img4.png)
+
+**Powdery Mildew:**
+
+ ![Mildew Average and variability](/assets/images/img5.png)
+
+From these visualisations and calculations, we observed clear and consistent differences. Healthy leaves had more consistent central colouring, while mildew-affected leaves showed irregular patches and higher variability.
+
+These findings confirm the hypothesis: there is a visually detectable difference between healthy and mildew-infected leaves.
+
+### Hypothesis 2
+
+Our second hypothesis is that the machine learning model would perform just as accurately when trained on grayscale images instead of colour images.
+
+This hypothesis is based on the assumption that the presence or absence of mildew may be detected through shape and texture alone, rather than colour. This would provide flexibility in case colour images are not available from future data sources or equipment.
+
+### Hypothesis 2 Validation
+
+To validate this hypothesis, we trained a second version of the model using grayscale images. This was achieved by setting the `color_mode='grayscale'` in the `ImageDataGenerator` during the training, validation, and test phases.
+
+Below are the training results for the grayscale model, including accuracy and loss:
 
 ---
 ---
