@@ -10,8 +10,6 @@
 - [Hypotheses and Validation](#hypotheses-and-validation)
   - [Hypothesis 1](#hypothesis-1)
   - [Hypothesis 1 Validation](#hypothesis-1-validation)
-  - [Hypothesis 2](#hypothesis-2)
-  - [Hypothesis 2 Validation](#hypothesis-2-validation)
 - [The rationale to map the business requirements to the Data Visualisations and ML tasks](#the-rationale-to-map-the-business-requirements-to-the-data-visualisations-and-ml-tasks)
 - [ML Business Case](#ml-business-case)
 - [Dashboard Design](#dashboard-design)
@@ -119,17 +117,7 @@ From these visualisations and calculations, we observed clear and consistent dif
 
 These findings confirm the hypothesis: there is a visually detectable difference between healthy and mildew-infected leaves.
 
-### Hypothesis 2
 
-Our second hypothesis is that the machine learning model would perform just as accurately when trained on grayscale images instead of colour images.
-
-This hypothesis is based on the assumption that the presence or absence of mildew may be detected through shape and texture alone, rather than colour. This would provide flexibility in case colour images are not available from future data sources or equipment.
-
-### Hypothesis 2 Validation
-
-To validate this hypothesis, we trained a second version of the model using grayscale images. This was achieved by setting the `color_mode='grayscale'` in the `ImageDataGenerator` during the training, validation, and test phases.
-
-Below are the training results for the grayscale model, including accuracy and loss:
 
 ---
 ---
