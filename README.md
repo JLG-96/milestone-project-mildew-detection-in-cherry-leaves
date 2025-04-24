@@ -10,6 +10,8 @@
 - [Hypotheses and Validation](#hypotheses-and-validation)
   - [Hypothesis 1](#hypothesis-1)
   - [Hypothesis 1 Validation](#hypothesis-1-validation)
+- [Hypothesis 2](#hypothesis-2)
+  - [Hypothesis 2 Validation](#hypothesis-2-validation)
 - [The rationale to map the business requirements to the Data Visualisations and ML tasks](#the-rationale-to-map-the-business-requirements-to-the-data-visualisations-and-ml-tasks)
 - [ML Business Case](#ml-business-case)
 - [Dashboard Design](#dashboard-design)
@@ -117,7 +119,27 @@ From these visualisations and calculations, we observed clear and consistent dif
 
 These findings confirm the hypothesis: there is a visually detectable difference between healthy and mildew-infected leaves.
 
+## Hypothesis 2
 
+The trained CNN model can generalise well to unseen cherry leaf images.
+
+Farmy & Foods would like confidence that the predictive model will work not only on the training data, but also on real-world images captured from their fields in the future. We hypothesise that our model, once trained, will retain high accuracy on a completely unseen test dataset, indicating good generalisation ability.
+
+### Hypothesis 2 Validation
+
+To validate this hypothesis, we trained the CNN model using the training and validation datasets. After training, we evaluated the model’s performance on the unseen test set.
+
+We visualised the training accuracy/loss and validation accuracy/loss during model training. These plots show that the model converges with minimal overfitting:
+
+![Training History](/assets/images/img6.png)
+
+Finally, we assessed the model’s generalisation ability using the separate test dataset. The model achieved high accuracy and low loss on the test set, supporting the hypothesis that it generalises well to unseen data.
+
+Below is a screenshot showing the model's generalised performance on the test set:
+
+![Generalised Test Set Performance](/assets/images/img7.png)
+
+Based on the training history and performance on the test set, the hypothesis is validated. The model successfully generalises to unseen images and is suitable for deployment in a real-world cherry leaf inspection system.
 
 ---
 ---
