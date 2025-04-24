@@ -12,6 +12,8 @@
   - [Hypothesis 1 Validation](#hypothesis-1-validation)
 - [Hypothesis 2](#hypothesis-2)
   - [Hypothesis 2 Validation](#hypothesis-2-validation)
+  - [Hypothesis 3](#hypothesis-3)
+  - [Hypothesis 3 Validation](#hypothesis-3-validation)
 - [The rationale to map the business requirements to the Data Visualisations and ML tasks](#the-rationale-to-map-the-business-requirements-to-the-data-visualisations-and-ml-tasks)
 - [ML Business Case](#ml-business-case)
 - [Dashboard Design](#dashboard-design)
@@ -140,6 +142,21 @@ Below is a screenshot showing the model's generalised performance on the test se
 ![Generalised Test Set Performance](/assets/images/img7.png)
 
 Based on the training history and performance on the test set, the hypothesis is validated. The model successfully generalises to unseen images and is suitable for deployment in a real-world cherry leaf inspection system.
+
+### Hypothesis 3
+
+Using only a small number of training epochs will still allow the CNN model to achieve high accuracy.
+
+Farmy & Foods would benefit from a fast, efficient model training pipeline. We hypothesize that due to the quality and consistency of the dataset, the model will not require many training epochs to reach high accuracy, saving time and computing resources.
+
+### Hypothesis 3 Validation
+
+To validate this, we monitored training and validation performance over a short number of epochs (7 or fewer). The plots below demonstrate how accuracy and loss quickly converge and stabilize, with minimal overfitting, supporting our hypothesis.
+
+![Training History Graph – Accuracy and Loss](assets/images/img6.png)
+
+Based on the training curve, we can confirm that the model performs well within just a few epochs. This supports the hypothesis that fewer training epochs are sufficient, which is beneficial for future retraining or scaling the model to other crops.
+
 
 ---
 ---
