@@ -14,7 +14,6 @@
   - [Hypothesis 2 Validation](#hypothesis-2-validation)
   - [Hypothesis 3](#hypothesis-3)
   - [Hypothesis 3 Validation](#hypothesis-3-validation)
-- [The rationale to map the business requirements to the Data Visualisations and ML tasks](#the-rationale-to-map-the-business-requirements-to-the-data-visualisations-and-ml-tasks)
 - [ML Business Case](#ml-business-case)
 - [Dashboard Design](#dashboard-design)
 - [Bugs](#bugs)
@@ -158,6 +157,7 @@ To validate this, we monitored training and validation performance over a short 
 Based on the training curve, we can confirm that the model performs well within just a few epochs. This supports the hypothesis that fewer training epochs are sufficient, which is beneficial for future retraining or scaling the model to other crops.
 
 
+
 ---
 ---
 ---
@@ -179,12 +179,6 @@ Based on the training curve, we can confirm that the model performs well within 
 
 
 
-## The rationale to map the business requirements to the Data Visualisations and ML tasks
-
-| Business Requirement | ML Task                         | Visualisation Task                          |
-|----------------------|----------------------------------|---------------------------------------------|
-| Instant prediction    | Image classification with CNN    | Accuracy/loss plots, confusion matrix        |
-| Visual differentiation       | Not required (visual only) | Image montage, average image comparison, difference image |
 
 ## ML Business Case
 
