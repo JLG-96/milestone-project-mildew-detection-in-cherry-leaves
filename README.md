@@ -14,6 +14,9 @@
   - [Hypothesis 2 Validation](#hypothesis-2-validation)
   - [Hypothesis 3](#hypothesis-3)
   - [Hypothesis 3 Validation](#hypothesis-3-validation)
+- [The Rationale to Map the Business Requirements to the Data Visualisations and ML Tasks](#the-rationale-to-map-the-business-requirements-to-the-data-visualisations-and-ml-tasks)
+  - [Requirement 1: Visual Differentiation](#requirement-1-visual-differentiation)
+  - [Requirement 2: Predictive Classification](#requirement-2-predictive-classification)
 - [ML Business Case](#ml-business-case)
 - [Dashboard Design](#dashboard-design)
 - [Bugs](#bugs)
@@ -156,7 +159,44 @@ To validate this, we monitored training and validation performance over a short 
 
 Based on the training curve, we can confirm that the model performs well within just a few epochs. This supports the hypothesis that fewer training epochs are sufficient, which is beneficial for future retraining or scaling the model to other crops.
 
+## The Rationale to Map the Business Requirements to the Data Visualisations and ML Tasks
 
+This section outlines how the project's user stories directly map to the client's business requirements, ensuring that both visual differentiation and predictive functionality needs were addressed.
+
+A full list of User Stories can be found here:  
+[View User Stories Project Board](https://github.com/users/JLG-96/projects/12/views/1)
+
+### Requirement 1: Visual Differentiation
+
+**Business Requirement:**  
+The client is interested in conducting a study to visually differentiate a healthy cherry leaf from one with powdery mildew.
+
+**Relevant User Stories:**
+
+- **As a data scientist, I can collect and prepare image data so that it can be used for analysis and training ML models.**  
+  - Dataset collected from Kaggle, validated to remove non-image files, and split into training, validation, and test sets.
+
+- **As a data scientist, I can visualise healthy and infected cherry leaf images so that I can observe visual differences between them.**  
+  - Created average images, variability images, and image montages for both healthy and infected leaves to support visual analysis.
+
+- **As an end user, I can review a visual study page so that I can easily understand the key differences between healthy and infected leaves.**  
+  - Built a Visual Study page in the dashboard to display side-by-side visualisations and comparison images.
+
+### Requirement 2: Predictive Classification
+
+**Business Requirement:**  
+The client is interested in predicting if a cherry leaf is healthy or contains powdery mildew.
+
+**Relevant User Stories:**
+
+- **As a data scientist, I can build and train a CNN model to classify uploaded images as healthy or infected so that the client can automate leaf inspection.**  
+  - Developed a Convolutional Neural Network (CNN) that achieved strong accuracy on unseen test data.
+
+- **As an end user, I can upload an image of a cherry leaf so that I can instantly find out if it is healthy or infected with mildew.**  
+  - Implemented a Mildew Detector page where users can upload an image and receive a classification prediction.
+
+- **As an end user, I can review a model evaluation page so that I can view accuracy scores, loss charts, and confusion matrix performance.**  
+  - Added a Model Evaluation page showing model training performance and test set results for transparency and trust.
 
 ---
 ---
