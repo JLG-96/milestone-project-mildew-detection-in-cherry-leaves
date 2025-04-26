@@ -19,6 +19,11 @@
   - [Requirement 2: Predictive Classification](#requirement-2-predictive-classification)
 - [ML Business Case](#ml-business-case)
 - [Dashboard Design](#dashboard-design)
+  - [Home Page (Project Overview)](#home-page-project-overview)
+  - [Visual Study Page](#visual-study-page)
+  - [Mildew Detector Page (Make a Prediction)](#mildew-detector-page-make-a-prediction)
+  - [Model Evaluation Page](#model-evaluation-page)
+- [Dashboard Design](#dashboard-design-1)
 - [Bugs](#bugs)
   - [IsADirectoryError During Dataset Cleanup](#isadirectoryerror-during-dataset-cleanup)
   - [Slug Size / Deployment Challenges](#slug-size--deployment-challenges)
@@ -218,6 +223,45 @@ By implementing a machine learning solution based on Convolutional Neural Networ
   - If non-cherry leaf images are uploaded, the model may still attempt a classification, as it does not include a rejection mechanism.
 
 This machine learning approach directly addresses the client's business requirements by supporting both visual differentiation and instant prediction of leaf health.
+
+## Dashboard Design
+
+The Streamlit dashboard was built with accessibility and clarity as primary goals. It consists of four key pages, each aligned with the business requirements and user stories outlined earlier.
+
+### Home Page (Project Overview)
+
+The Home page provides a summary of the project's objectives and instructions for using the dashboard. It outlines the background of Farmy & Foods' cherry plantation issue and guides the user on how to navigate through the dashboard pages effectively.
+
+![Home Page Overview](/assets/images/img8.png)
+
+### Visual Study Page
+
+The Visual Study page enables users to visually explore differences between healthy and mildew-affected cherry leaves. It includes image montages, average images for each class, and a difference image that highlights key areas of variation. This supports the first business requirement by allowing users to visually differentiate between healthy and infected leaves.
+
+![Visual Study Page1](/assets/images/img9.png)
+![Visual Study Page2](/assets/images/img10.png)
+
+### Mildew Detector Page (Make a Prediction)
+
+The Mildew Detector page provides an interactive feature where users can upload a leaf image to receive an immediate prediction. The model outputs whether the leaf is "healthy" or "powdery mildew" along with a prediction probability chart. This page directly addresses the second business requirement by enabling real-time prediction and scalable disease detection.
+
+![Mildew Detector Page 1](/assets/images/img12.png)
+
+![Mildew Detector Page 2](/assets/images/img13.png)
+
+**Sample Images for Prediction:**
+
+To test the Mildew Detector, users can download sample healthy and infected cherry leaf images from the original Kaggle dataset:
+
+[Cherry Leaves Dataset](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)
+
+### Model Evaluation Page
+
+The Model Evaluation page provides transparency on the model's performance. It displays training and validation accuracy and loss curves, a confusion matrix, and final test set performance results. This gives users confidence in the model's reliability and highlights the model's ability to generalise to unseen data.
+
+![Model Evaluation Page](/assets/images/img11.png)
+
+---
 
 ---
 ---
