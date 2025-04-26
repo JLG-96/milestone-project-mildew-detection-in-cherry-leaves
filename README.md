@@ -396,6 +396,25 @@ The following steps were used to deploy the project:
 - **Slug Size:**  
   Unlike Heroku, Render’s free service does not have strict slug size limits, making it suitable for image-heavy machine learning projects.
 
+  ## Main Data Analysis and Machine Learning Libraries
+
+The following libraries were essential for project development:
+
+- **os** – File and directory operations  
+- **shutil** – File and directory operations  
+- **Pillow (PIL) 10.0.1** – Loading and validating images for analysis  
+- **numpy 1.26.1** – Array manipulation, image averaging, and difference calculations  
+- **pandas 2.1.1** – Data handling and dataset structuring  
+- **matplotlib 3.4.0** – Creating static visualisations such as image previews and probability charts  
+- **seaborn 0.13.2** – Statistical visualisations (limited use for correlation plots)  
+- **plotly 5.10.0** – Interactive plotting for model performance metrics  
+- **tensorflow-cpu 2.16.1** – CNN model creation, training, and evaluation  
+- **keras 3.0.0** – Model hyperparameter tuning and callbacks  
+- **scikit-learn 1.3.1** – Model evaluation tools including confusion matrix and classification report  
+- **streamlit 1.40.2** – Web application framework for building an interactive dashboard  
+- **joblib 1.4.2** – Efficient model saving and parallel computation where needed
+
+
 ---
 ---
 ---
@@ -421,15 +440,6 @@ The following steps were used to deploy the project:
 
 
 
-
-## Main Data Analysis and Machine Learning Libraries
-
-- `os`, `shutil`: File and directory operations
-- `Pillow (PIL)`: Image loading and validation
-- `numpy`: Used to calculate average and difference images, and format model input
-- `matplotlib.pyplot`: Used for image display and prediction probability charts
-- `tensorflow.keras`: For CNN model creation and prediction
-- `streamlit`: To build an interactive user interface
 
 
 
