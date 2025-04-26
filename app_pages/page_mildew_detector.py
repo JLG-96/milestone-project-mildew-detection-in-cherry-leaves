@@ -16,6 +16,10 @@ def page_mildew_detector_body():
         "* The client wants to predict whether a given cherry leaf is healthy or infected with powdery mildew."
     )
 
+    st.info(
+    "* Need a sample image to test? You can download healthy or infected cherry leaf images from [here](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)."
+    )
+
     st.write(
         "* Upload a cherry leaf image. The model will classify it as **Healthy** or **Powdery Mildew** based on visual features."
     )

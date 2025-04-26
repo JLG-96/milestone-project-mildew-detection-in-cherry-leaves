@@ -251,9 +251,7 @@ The Mildew Detector page provides an interactive feature where users can upload 
 
 **Sample Images for Prediction:**
 
-To test the Mildew Detector, users can download sample healthy and infected cherry leaf images from the original Kaggle dataset:
-
-[Cherry Leaves Dataset](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)
+To test the Mildew Detector, users can download sample healthy and infected cherry leaf images from the original Kaggle dataset [click here](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves).
 
 ### Model Evaluation Page
 
