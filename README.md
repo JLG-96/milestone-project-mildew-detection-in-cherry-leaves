@@ -198,37 +198,48 @@ The client is interested in predicting if a cherry leaf is healthy or contains p
 - **As an end user, I can review a model evaluation page so that I can view accuracy scores, loss charts, and confusion matrix performance.**  
   - Added a Model Evaluation page showing model training performance and test set results for transparency and trust.
 
----
----
----
----
----
----
----
----
----
----
----
----
----
-
-
-
-
-
-
-
-
-
 ## ML Business Case
 
-- **Objective:** Reduce inspection time and increase early detection of mildew.
-- **Method:** Use a CNN model trained on labeled image data.
-- **Ideal Outcome:** A model that correctly classifies leaf images in real-time.
-- **Success Metrics:** High accuracy, balanced precision/recall, generalization to unseen data.
-- **Output:** Prediction label and confidence score.
-- **Relevance:** Enables large-scale, fast inspection across farms.
-- **Limitation:** The model has been trained solely on cherry leaf images and is not designed to identify whether an uploaded image is a cherry leaf or not. If a non-leaf image is accidentally uploaded, the model will still classify it as either "healthy" or "powdery mildew," as it does not have a rejection mechanism or multi-class structure. This reflects a typical limitation of binary classifiers, and highlights the importance of ensuring only cherry leaf images are used during prediction.
+The business objective is to automate and scale the detection of powdery mildew in cherry plantations, reducing time and labour costs and ensuring crop quality. Manual inspections are currently slow, costly and unscalable.
+
+By implementing a machine learning solution based on Convolutional Neural Networks (CNNs), Farmy & Foods can instantly classify cherry leaf images as either healthy or infected. This enables early intervention and protects their premium crop quality.
+
+**Key Points:**
+
+- **Objective:** Develop a predictive model to classify cherry leaves as healthy or infected with mildew.
+- **Method:** Train a Convolutional Neural Network (CNN) using a labelled dataset of cherry leaf images sourced from Kaggle.
+- **Desired Outcome:** Achieve high classification accuracy and reliable performance on unseen data to support real-time decision-making.
+- **Impact:**  
+  - Dramatically reduce manual inspection time.  
+  - Enable fast, scalable inspections across multiple farms.  
+  - Protect the client’s reputation for high-quality produce.
+- **Limitations:**  
+  - The model is designed to classify only cherry leaves as either healthy or infected.  
+  - If non-cherry leaf images are uploaded, the model may still attempt a classification, as it does not include a rejection mechanism.
+
+This machine learning approach directly addresses the client's business requirements by supporting both visual differentiation and instant prediction of leaf health.
+
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+
+
+
+
+
+
+
+
 
 ## Dashboard Design
 
