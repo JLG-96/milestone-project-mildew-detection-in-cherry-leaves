@@ -34,6 +34,13 @@
   - [Deployment Process](#deployment-process)
     - [Important Deployment Notes](#important-deployment-notes)
 - [Main Data Analysis and Machine Learning Libraries](#main-data-analysis-and-machine-learning-libraries)
+- [Other Technologies Used](#other-technologies-used)
+- [Testing](#testing)
+  - [Manual Testing](#manual-testing)
+    - [Business Requirements Testing](#business-requirements-testing)
+  - [Notes](#notes)
+  - [Responsiveness Testing](#responsiveness-testing)
+  - [Notes on Responsiveness](#notes-on-responsiveness)
 - [Future Improvements](#future-improvements)
 - [Credits](#credits)
   - [Content](#content)
@@ -414,7 +421,85 @@ The following libraries were essential for project development:
 - **streamlit 1.40.2** – Web application framework for building an interactive dashboard  
 - **joblib 1.4.2** – Efficient model saving and parallel computation where needed
 
+## Other Technologies Used
 
+- **Streamlit:** Used to develop the multi-page dashboard and build the interactive front-end for the project.
+- **Render:** Used to deploy the finished app as a live web application.
+- **Git & GitHub:** Used for version control, project collaboration, and code repository management.
+- **GitHub Codespaces:** Used as the Integrated Development Environment (IDE) for project development and testing.
+- **Am I Responsive:** Used to generate responsiveness preview screenshots for documentation.
+
+
+## Testing
+
+### Manual Testing
+
+#### Business Requirements Testing
+
+**Requirement 1:**  
+The client requested a visual study to differentiate healthy cherry leaves from those affected by powdery mildew.
+
+- As a data scientist, I can collect and prepare cherry leaf data so that it can be used for analysis and training ML models.
+- As a data scientist, I can visualise healthy and infected cherry leaf images so that I can observe visual differences between them.
+- As an end user, I can review a visual study page so that I can easily understand the key differences between healthy and infected leaves.
+
+| Dashboard Item | Test Conducted | Expected Result | Actual Result |
+|----------------|----------------|-----------------|---------------|
+| Navbar         | Selecting Visual Study page | Visual Study page opens | Success |
+| Image Montage Button | Click button | See image montage options appear | Success |
+| Average Image Button | Click button | See average images for healthy and mildew leaves | Success |
+| Difference Image Button | Click button | See difference between healthy and infected leaves | Success |
+
+---
+
+**Requirement 2:**  
+The client requested a predictive tool to classify uploaded cherry leaf images.
+
+- As a data scientist, I can build and train a CNN model to classify uploaded images as healthy or infected so that the client can automate leaf inspection.
+- As an end user, I can upload an image of a cherry leaf so that I can instantly find out if it is healthy or infected with mildew.
+- As an end user, I can review a model evaluation page so that I can view accuracy scores, loss charts, and confusion matrix performance.
+
+| Dashboard Item | Test Conducted | Expected Result | Actual Result |
+|----------------|----------------|-----------------|---------------|
+| Navbar         | Selecting Mildew Detector page | Mildew Detector page opens | Success |
+| Link to Kaggle Sample Images | Click link | Kaggle page for sample images opens | Success |
+| Upload Box | Drag and drop image | Image uploaded successfully and analyzed | Success |
+| Upload Box | Browse files and upload | Image uploaded successfully and analyzed | Success |
+| Prediction Output | Check prediction label and probability chart | Correct prediction label and chart displayed | Success |
+| Image Analysis Report | Click download report | CSV file downloaded successfully | Success |
+
+| Dashboard Item | Test Conducted | Expected Result | Actual Result |
+|----------------|----------------|-----------------|---------------|
+| Navbar         | Selecting Model Evaluation page | Model Evaluation page opens | Success |
+| Metrics Display | View metrics | Accuracy, Loss, and Confusion Matrix display correctly | Success |
+
+---
+
+### Notes
+
+- All testing was conducted manually by uploading leaf images from both the healthy and powdery mildew datasets.
+- Testing confirmed that all major functions (navigation, file upload, prediction, and performance visualization) work correctly across all tested devices.
+- No critical bugs were encountered during final manual testing.
+
+
+### Responsiveness Testing
+
+The application was manually tested across multiple devices and screen sizes to ensure a consistent user experience:
+
+| Device / Screen Size | Testing Conducted | Expected Result | Actual Result |
+|----------------------|-------------------|-----------------|---------------|
+| Desktop (Windows, Chrome) | Full site navigation, uploads, predictions, and downloads | All features work correctly | Success |
+| Laptop (Windows, Edge) | Full dashboard interaction | No layout issues | Success |
+| iPad (Safari) | Navigation, file upload, and prediction tested | Layout adjusts to tablet screen, upload button accessible | Success |
+| iPhone (Safari) | Navigation and text readability tested | Content readable, upload and prediction still functional | Success |
+
+---
+
+### Notes on Responsiveness
+
+- Streamlit's built-in layout system ensured good responsiveness without requiring external libraries like Bootstrap.
+- Minor adjustments were made to component placement (e.g., spacing on Visual Study page) to optimize mobile readability.
+- No horizontal scrolling or major layout breaks were observed during testing.
 ---
 ---
 ---
