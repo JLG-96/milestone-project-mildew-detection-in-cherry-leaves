@@ -23,21 +23,17 @@
   - [Visual Study Page](#visual-study-page)
   - [Mildew Detector Page (Make a Prediction)](#mildew-detector-page-make-a-prediction)
   - [Model Evaluation Page](#model-evaluation-page)
-- [Dashboard Design](#dashboard-design-1)
 - [Bugs](#bugs)
-  - [IsADirectoryError During Dataset Cleanup](#isadirectoryerror-during-dataset-cleanup)
-  - [Slug Size / Deployment Challenges](#slug-size--deployment-challenges)
+  - [Previously Encountered and Resolved Bugs](#previously-encountered-and-resolved-bugs)
+    - [File Format Validation](#file-format-validation)
+    - [Dataset Structure](#dataset-structure)
+    - [Upload File Handling](#upload-file-handling)
+    - [Dataset Cleanup Error](#dataset-cleanup-error)
+    - [Deployment Slug Size Challenge](#deployment-slug-size-challenge)
 - [Deployment](#deployment)
-  - [Render](#render)
-  - [Notes on Deployment:](#notes-on-deployment)
-  - [Deployment Steps on Render:](#deployment-steps-on-render)
+  - [Deployment Process](#deployment-process)
+    - [Important Deployment Notes](#important-deployment-notes)
 - [Main Data Analysis and Machine Learning Libraries](#main-data-analysis-and-machine-learning-libraries)
-- [Notebook Overviews](#notebook-overviews)
-  - [`01 - DataCollection.ipynb`](#01---datacollectionipynb)
-  - [`02 - DataVisualization.ipynb`](#02---datavisualizationipynb)
-  - [`03 - Modelling and Evaluating.ipynb`](#03---modelling-and-evaluatingipynb)
-- [Source Code Structure](#source-code-structure)
-- [App Testing](#app-testing)
 - [Future Improvements](#future-improvements)
 - [Credits](#credits)
   - [Content](#content)
@@ -243,15 +239,15 @@ The Visual Study page enables users to visually explore differences between heal
 
 ### Mildew Detector Page (Make a Prediction)
 
-The Mildew Detector page provides an interactive feature where users can upload a leaf image to receive an immediate prediction. The model outputs whether the leaf is "healthy" or "powdery mildew" along with a prediction probability chart. This page directly addresses the second business requirement by enabling real-time prediction and scalable disease detection.
+The Mildew Detector page provides an interactive feature where users can upload a leaf image to receive an immediate prediction. The model outputs whether the leaf is classified as "healthy" or "powdery mildew" along with a prediction probability chart.
+
+This page directly addresses the second business requirement by enabling real-time prediction and scalable disease detection.
+
+Users who do not have their own images can also download sample healthy and infected cherry leaf images for testing purposes via the link provided on the Mildew Detector page or, directly from [here](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves).
 
 ![Mildew Detector Page 1](/assets/images/img12.png)
 
 ![Mildew Detector Page 2](/assets/images/img13.png)
-
-**Sample Images for Prediction:**
-
-To test the Mildew Detector, users can download sample healthy and infected cherry leaf images from the original Kaggle dataset [click here](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves).
 
 ### Model Evaluation Page
 
@@ -259,87 +255,172 @@ The Model Evaluation page provides transparency on the model's performance. It d
 
 ![Model Evaluation Page](/assets/images/img11.png)
 
----
-
----
----
----
----
----
----
----
----
----
----
----
----
----
-
-
-
-
-
-
-
-
-
-## Dashboard Design
-
-- Planned
-
-| Page              | Content                                                                 |
-|------------------|-------------------------------------------------------------------------|
-| Home             | Project overview and instructions                                       |
-| Model Prediction | Image uploader and prediction result display                            |
-| Model Evaluation | Training accuracy/loss, confusion matrix, classification report         |
-| Visual Study     | Shows sample healthy and mildew-affected leaves. Includes image montage, average image comparisons, and pixel-level difference image. Supports visual differentiation goal. |
-
-> Note: All planned dashboard pages have been implemented using `Streamlit`.
-
 ## Bugs
 
-### IsADirectoryError During Dataset Cleanup
+At the time of submission, no active bugs are present. All app functionality, dashboard pages, and machine learning tasks operate as intended.
 
-- **Issue:** While attempting to remove non-image files from the dataset, the script triggered an `IsADirectoryError` because it attempted to delete folders instead of files.
-- **Why it occurred:** The initial implementation used `os.listdir()` and assumed all items were files, but some were directories (e.g., `healthy`, `powdery_mildew` subfolders).
-- **How it was resolved:** The file removal function was updated to use `os.walk()`, which recursively iterates through all directories and ensures only files are targeted for deletion.
-- **Outcome:** The issue was resolved successfully, and the cleaned dataset is now verified and usable for further analysis.
+### Previously Encountered and Resolved Bugs
 
-### Slug Size / Deployment Challenges
+#### File Format Validation
 
-- **Issue:** Initial deployment to Heroku failed due to the compiled slug exceeding the 500MB limit.
-- **Why it occurred:** The project included large directories and unnecessary files (e.g., image datasets, test data, notebooks).
-- **How it was resolved:** A `.slugignore` file was created to exclude folders and files not required to run the Streamlit app.
-- **Outcome:** Deployment succeeded after switching to Render, which allows for larger project sizes and simpler configuration using a start command.
+- **Problem:**  
+  Non-image files (e.g., JSON or system files) were initially present within the dataset, causing errors during model training.
+
+- **Cause:**  
+  The dataset download contained mixed file types that were not filtered before training.
+
+- **Solution:**  
+  The dataset was cleaned to include only `.jpg` images, ensuring compatibility with the TensorFlow image data pipeline.
+
+- **Outcome:**  
+  Model training proceeded successfully without further format-related interruptions.
+
+#### Dataset Structure
+
+- **Problem:**  
+  During early data exploration, a mismatch between folder names and labels caused confusion and training errors.
+
+- **Cause:**  
+  The original dataset had some inconsistencies in folder naming and structure that misaligned with Keras directory-based loading.
+
+- **Solution:**  
+  The dataset was reorganized to clearly separate `healthy` and `powdery_mildew` images into appropriate subfolders.
+
+- **Outcome:**  
+  Data generators were able to correctly label and load the images, allowing training and evaluation to proceed correctly.
+
+#### Upload File Handling
+
+- **Problem:**  
+  A deprecation warning was triggered during image uploads through Streamlit.
+
+- **Cause:**  
+  The app was using outdated Streamlit syntax for file uploaders.
+
+- **Solution:**  
+  The code was updated to use the latest supported `st.file_uploader()` syntax, preventing future compatibility issues.
+
+- **Outcome:**  
+  File uploads now function correctly without warnings, and the app is future-proofed for newer Streamlit versions.
+
+#### Dataset Cleanup Error
+
+- **Problem:**  
+  An `IsADirectoryError` occurred during the dataset cleanup phase when the script attempted to delete directories instead of files.
+
+- **Cause:**  
+  The script incorrectly assumed all items returned by `os.listdir()` were files, but folders such as `healthy` and `powdery_mildew` were also present.
+
+- **Solution:**  
+  The cleanup code was updated to use `os.walk()`, properly identifying and targeting only files for deletion.
+
+- **Outcome:**  
+  The dataset was fully cleaned and validated for modelling.
+
+#### Deployment Slug Size Challenge
+
+- **Problem:**  
+  Deployment to Heroku failed because the compiled slug exceeded the platform's 500MB limit.
+
+- **Cause:**  
+  Large files such as datasets, test notebooks, and unused directories were being included in the Heroku build.
+
+- **Solution:**  
+  A `.slugignore` file was implemented to exclude unnecessary files, and deployment was migrated to Render, which offers higher size allowances.
+
+- **Outcome:**  
+  The app was successfully deployed using Render and now operates reliably without size issues.
 
 ## Deployment
 
-### Render
+This project was deployed to [Render](https://render.com) using their free tier hosting service.
 
-This project was deployed using [Render](https://render.com) on their free tier. The live web application can be accessed here:  
+The live web application can be accessed here:  
 **[https://project-mildew-detection.onrender.com](https://project-mildew-detection.onrender.com)**
 
-### Notes on Deployment:
+---
 
-- The app may take up to 30–60 seconds to load if it hasn't been accessed recently. This is due to cold starts on the free Render tier.
-- Once the application loads, it performs as expected.
+### Deployment Process
 
-### Deployment Steps on Render:
+The following steps were used to deploy the project:
 
-1. Create a free account at [render.com](https://render.com).
-2. Connect your GitHub repository to Render.
-3. Create a new **Web Service**, selecting the correct repository.
-4. Set the following options during configuration:
-   - **Build Command:**  
-     ```
-     pip install -r requirements.txt && ./setup.sh
-     ```
-   - **Start Command:**  
-     ```
-     streamlit run app.py --server.address=0.0.0.0 --server.port=10000
-     ```
-5. Specify the Python version (e.g. `3.10.12`) using a `runtime.txt` file or a `PYTHON_VERSION` environment variable.
-6. Click deploy and wait for the build process to complete.
+1. Log in to render and click the **+ New** in the top right corner. Select **Web Service**.
+![Render dashboard](/assets/images/img14.png)
+   - Choose **"Connect account"** and authorize access to GitHub if not already connected.
+
+2. Select the correct repository from the list.
+![Select correct reppo](/assets/images/img15.png)
+   - Ensure the following settings match:
+![Settings for deployment](/assets/images/img16.png)
+
+3. Set the **Build Command:**
+
+  ```bash
+  pip install -r requirements.txt && ./setup.sh
+  ```
+
+4. Set the **Start Command:**
+
+  ```bash
+  streamlit run app.py
+  ```
+
+5. Ensure the Free plan $0/month is selected.
+
+6. Set the following environment variables:
+   - Add a key: PORT and a value: 8501
+   - Add a second environment variable with a key: PYTHON_VERSION and value: 3.8.12
+![Environment variables](/assets/images/img17.png)
+
+7. Set to auto-deploy.
+
+   - The site will deploy every time a commit is pushed to the GitHub repository.
+   - Build hours are limited to 750 hours/month, it is unlikely but not impossible to reach that limit.
+
+8. In order to deploy:
+
+   - You must now click **Create Web Service**
+   - Watch the console for some activity, deployment can take up to 15 minutes to complete
+   - When the build and deployment have completed, the console will look something like this:
+![Successful deployment](/assets/images/img18.png)
+
+9. Access the app:
+
+   - You will then be provided a URL at the top of the page which will allow you to access the app.
+   - The URL for this live app is; **[https://project-mildew-detection.onrender.com](https://project-mildew-detection.onrender.com)**
+
+#### Important Deployment Notes
+
+- **Cold Starts:**  
+  On Render’s free plan, if the app is inactive for a while, it can take 30–60 seconds to restart when first accessed.
+- **Slug Size:**  
+  Unlike Heroku, Render’s free service does not have strict slug size limits, making it suitable for image-heavy machine learning projects.
+
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Main Data Analysis and Machine Learning Libraries
 
@@ -350,79 +431,9 @@ This project was deployed using [Render](https://render.com) on their free tier.
 - `tensorflow.keras`: For CNN model creation and prediction
 - `streamlit`: To build an interactive user interface
 
-## Notebook Overviews
 
-### `01 - DataCollection.ipynb`
 
-This notebook is responsible for loading and preparing the dataset for modelling. It includes:
 
-- Verification and cleanup of the image directory
-- Validation that all image files are in a supported format
-- Splitting the dataset into `train`, `validation`, and `test` folders
-- Setting the file structure required for training image classification models
-- Summary cell outlining the conclusions and next steps
-
-This notebook supports the business requirement by ensuring a high-quality and well-organised dataset for downstream machine learning tasks.
-
----
-
-### `02 - DataVisualization.ipynb`
-
-This notebook explores and visualises the image data. It includes:
-
-- Calculation of image dimensions (width, height) across the dataset
-- Image montage previewing healthy vs mildew-affected leaves
-- Average image and pixel-level difference between healthy and mildew categories
-- Confirmed image consistency and verified class balance
-- Final markdown cell includes conclusions and next steps
-
-This notebook supports the first business requirement by visually highlighting differences between healthy and infected leaves and confirming the dataset is balanced and suitable for modelling.
-
----
-
-### `03 - Modelling and Evaluating.ipynb`
-
-This notebook builds, trains, and evaluates a Convolutional Neural Network (CNN). It includes:
-
-- Data augmentation using `ImageDataGenerator`
-- CNN model creation and compilation using `tensorflow.keras`
-- Application of early stopping to prevent overfitting
-- Evaluation using test data, accuracy/loss curves, and a confusion matrix
-- Saving the model and test performance metrics
-- Concludes with model evaluation on unseen test data, saving accuracy/loss to a JSON file for dashboard integration.
-- It is important to note that, as expected, the model misclassifies non-cherry leaf images (e.g., a dog), as it was trained exclusively on cherry leaf data. This confirms the model's appropriate specialization and highlights the importance of using representative input data during inference.
-
-This notebook supports the second business requirement by enabling real-time prediction of whether a cherry leaf is healthy or has mildew.
-
----
-
-## Source Code Structure
-
-This project uses a modular structure with separate folders for notebooks, dashboard pages, and supporting code.
-
-- `jupyter_notebooks/`  
-  Contains the three core notebooks for data collection, visualisation, and modelling.
-
-- `app_pages/`  
-  Contains the Streamlit dashboard pages:
-  - `page_summary.py`: Overview of the project and business requirements
-  - `page_cherry_leaves_visualizer.py`: Visual study comparing healthy and mildew-affected leaves
-  - `page_mildew_detector.py`: Upload interface to predict leaf health from an image
-
-- `src/`  
-  Holds reusable scripts:
-  - `data_management.py`: Utility to download results as a timestamped CSV
-  - `machine_learning/predictive_analysis.py`: Contains logic for resizing images, loading the model, making predictions, and plotting prediction probabilities
-
-## App Testing
-
-The final Streamlit app was tested using a range of inputs to confirm correct classification and to assess model behaviour under edge cases.
-
-- A healthy cherry leaf image was correctly classified as *healthy*.
-- A mildew-infected cherry leaf image was correctly classified as *powdery mildew*.
-- A non-cherry image (e.g. a dog) was misclassified as either “healthy” or “powdery mildew,” which is expected due to the model's binary classification setup and exclusive training on cherry leaf data.
-
-This testing confirmed the model is functioning reliably within its intended use case - the misclassification of non-leaf inputs also demonstrated the model's limitations.
 
 ## Future Improvements
 
