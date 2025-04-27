@@ -41,11 +41,14 @@
   - [Notes](#notes)
   - [Responsiveness Testing](#responsiveness-testing)
   - [Notes on Responsiveness](#notes-on-responsiveness)
-- [Future Improvements](#future-improvements)
+- [Python Validation](#python-validation)
+  - [Jupyter Notebook Validation](#jupyter-notebook-validation)
+  - [App Python File Validation](#app-python-file-validation)
+  - [Conclusion](#conclusion)
 - [Credits](#credits)
   - [Content](#content)
   - [Media](#media)
-- [Acknowledgements](#acknowledgements)
+  - [Acknowledgements](#acknowledgements)
 
 ## Introduction
 
@@ -500,62 +503,63 @@ The application was manually tested across multiple devices and screen sizes to 
 - Streamlit's built-in layout system ensured good responsiveness without requiring external libraries like Bootstrap.
 - Minor adjustments were made to component placement (e.g., spacing on Visual Study page) to optimize mobile readability.
 - No horizontal scrolling or major layout breaks were observed during testing.
----
----
----
----
----
----
----
----
----
----
----
----
----
 
+## Python Validation
 
+All Python code used in this project was validated to ensure correctness and alignment with PEP8 styling where possible.
 
+### Jupyter Notebook Validation
 
+The three Jupyter notebooks were validated using `pycodestyle_magic`. The following steps were taken:
 
+1. Installed the necessary extension:
 
+   ```python
+   !pip install pycodestyle_magic
+   ```
 
+2. At the top of each notebook, the following commands were run:
 
+  ```python
+  %load_ext pycodestyle_magic
+  %pycodestyle_on
+  ```
 
+3. After running all cells, the notebooks showed no execution errors. Minor PEP8 warnings were raised regarding:
 
+Missing whitespace around operators (E225)
 
+Lines exceeding 79 characters (E501)
 
+These minor style warnings did not affect the functionality or logic of the code, and were deemed acceptable for the purposes of this project.
 
+### App Python File Validation
 
+The main application files (app.py and files in the app_pages directory) were reviewed for PEP8 compliance using a PEP8 linter.
 
+No critical errors were found, and the application runs without issue. Minor style warnings (e.g., line length) were similarly noted but did not require urgent correction.
 
+### Conclusion
 
-## Future Improvements
-
-- Add a class verification step to reject non-leaf images.
-- Introduce a multi-class model for broader use across other crop types.
-- Improve loading speed by moving to a paid hosting tier or lightweight model.
+All critical Python code was validated and runs correctly. Minor style warnings were documented but did not affect the performance, clarity, or correctness of the project.
 
 ## Credits
 
 ### Content
 
-- Dataset from [Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves)
-- The overall structure of the project, including the Jupyter notebook workflows and the Streamlit dashboard layout, was based on materials and templates provided by Code Institute as part of the Predictive Analytics module.
-- Specific components adapted and customised include:
-  - The `DataCollection`, `DataVisualisation`, and `Modelling and Evaluating` notebooks.
-  - The multi-page Streamlit structure (`app_pages/`, `src/` folder and routing).
-  - The business problem and dataset were defined by the Code Institute Cherry Leaves project brief.
-- Some utility function logic was adapted from Code Institute learning materials.
-- All code has been reviewed and adapted where necessary to meet the specific goals of this project and ensure understanding and independent implementation.
-- All external code was either provided by Code Institute, openly accessible for educational use, or adapted with appropriate understanding and acknowledgement.
-- Help found
+- The dataset was provided by **Code Institute** and accessed through [Kaggle](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves).
+- The **Cherry Leaves** project brief was set by **Code Institute** as part of the Predictive Analytics module.
+- Inspiration and guidance for structuring the project was drawn from the **Malaria Walkthrough Project** provided by Code Institute.
+- Influence for README structure project organization came from [Hugh Keenan](https://github.com/HughKeenan/CherryPicker/tree/main?tab=readme-ov-file#hypotheses).
+- Additional support, guidance and technical troubleshooting was provided via the **Slack Community** and **Stack Overflow**.
 
 ### Media
 
-- Images displayed throughout the app are sourced from the cherry leaf dataset provided on [Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves).
-- Additional test images used during app testing (e.g. downloaded leaf and non-leaf images) were sourced from public web searches for educational purposes only and are not part of the final deployed app.
+- All images used in the dashboard come from the original Kaggle cherry leaf dataset.
+- Test images for app functionality (uploaded during manual testing) were also sourced from the same dataset.
+- Streamlit page icons were accessed from [Streamlit Emoji Shortcodes](https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/).
 
-## Acknowledgements
+### Acknowledgements
 
-- Thanks to the Code Institute Slack community and tutors for their support and guidance, particularly when troubleshooting deployment issues and `.slugignore` configuration.
+- Special thanks to my mentor, **Mo Shami**, for invaluable guidance and feedback throughout the project.
+- Thanks to the **Slack Community** for assistance with technical issues and deployment troubleshooting.
