@@ -1,9 +1,24 @@
+<!-- omit in toc -->
+# Mildew Detection in Cherry Leaves
 ![Screenshot showing responsiveness of app](/assets/images/img1.png)
 
+<!-- omit in toc -->
+## Introduction
+
+Farmy & Foods, a leading supplier of premium produce, has identified an operational bottleneck: manually inspecting cherry trees for signs of powdery mildew is time-consuming and unsustainable at scale. Employees currently spend up to 30 minutes per tree inspecting and treating leaves—limiting coverage across farms and delaying intervention.
+
+This project explores the application of predictive analytics to automate the detection of mildew in cherry leaves using image classification. Leveraging a labeled dataset of cherry leaves, we build a dashboard that combines machine learning with visual tools to support early detection and inform decision-making.
+
+The dashboard serves two primary business needs:
+
+1. **Visual Differentiation** – Help users clearly distinguish between healthy and mildew-affected leaves.
+2. **Predictive Classification** – Use a trained Convolutional Neural Network (CNN) to determine if an uploaded cherry leaf image is healthy or infected with mildew.
+
+The solution was developed in Python using Jupyter notebooks and deployed using Streamlit on Render. A live version of the app may be found [here](https://project-mildew-detection.onrender.com).
+
+<!-- omit in toc -->
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Introduction](#introduction)
 - [Dataset Content](#dataset-content)
 - [Business Requirements](#business-requirements)
   - [Specific requirements](#specific-requirements)
@@ -49,19 +64,6 @@
   - [Content](#content)
   - [Media](#media)
   - [Acknowledgements](#acknowledgements)
-
-## Introduction
-
-Farmy & Foods, a leading supplier of premium produce, has identified an operational bottleneck: manually inspecting cherry trees for signs of powdery mildew is time-consuming and unsustainable at scale. Employees currently spend up to 30 minutes per tree inspecting and treating leaves—limiting coverage across farms and delaying intervention.
-
-This project explores the application of predictive analytics to automate the detection of mildew in cherry leaves using image classification. Leveraging a labeled dataset of cherry leaves, we build a dashboard that combines machine learning with visual tools to support early detection and inform decision-making.
-
-The dashboard serves two primary business needs:
-
-1. **Visual Differentiation** – Help users clearly distinguish between healthy and mildew-affected leaves.
-2. **Predictive Classification** – Use a trained Convolutional Neural Network (CNN) to determine if an uploaded cherry leaf image is healthy or infected with mildew.
-
-The solution was developed in Python using Jupyter notebooks and deployed using Streamlit on Render. A live version of the app may be found [here](https://project-mildew-detection.onrender.com)
 
 ## Dataset Content
 
