@@ -1,5 +1,6 @@
 <!-- omit in toc -->
 # Mildew Detection in Cherry Leaves
+
 ![Screenshot showing responsiveness of app](/assets/images/img1.png)
 
 <!-- omit in toc -->
@@ -69,7 +70,7 @@ The solution was developed in Python using Jupyter notebooks and deployed using 
 
 The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves).
 
-It contains over 4,000 images taken from Farmy & Foods’ cherry tree plantations. These images are divided into two categories: healthy cherry leaves and leaves infected with powdery mildew — a fungal disease known to affect many plant species. 
+It contains over 4,000 images taken from Farmy & Foods’ cherry tree plantations. These images are divided into two categories: healthy cherry leaves and leaves infected with powdery mildew — a fungal disease known to affect many plant species.
 
 This crop represents one of the most valuable products in Farmy & Foods’ portfolio, and the client has expressed concerns that the outbreak of powdery mildew may be compromising both the quality of their product and their reputation in the market. The dataset serves as the foundation for building and validating a machine learning model to assist with large-scale, accurate diagnosis and quality control across their nationwide farms.
 
@@ -434,7 +435,6 @@ The following libraries were essential for project development:
 - **GitHub Codespaces:** Used as the Integrated Development Environment (IDE) for project development and testing.
 - **Am I Responsive:** Used to generate responsiveness preview screenshots for documentation.
 
-
 ## Testing
 
 ### Manual Testing
@@ -486,7 +486,6 @@ The client requested a predictive tool to classify uploaded cherry leaf images.
 - Testing confirmed that all major functions (navigation, file upload, prediction, and performance visualization) work correctly across all tested devices.
 - No critical bugs were encountered during final manual testing.
 
-
 ### Responsiveness Testing
 
 The application was manually tested across multiple devices and screen sizes to ensure a consistent user experience:
@@ -527,13 +526,27 @@ The three Jupyter notebooks were validated using `pycodestyle_magic`. The follow
   %pycodestyle_on
   ```
 
-3. After running all cells, the notebooks showed no execution errors. Minor PEP8 warnings were raised regarding:
+After running all cells, the notebooks showed no execution errors.
 
-Missing whitespace around operators (E225)
+**However**, during PEP8 validation using %pycodestyle_on, the following warning was triggered in the Data Collection notebook:
 
-Lines exceeding 79 characters (E501)
+- *E225: missing whitespace around operator*
 
-These minor style warnings did not affect the functionality or logic of the code, and were deemed acceptable for the purposes of this project.
+This occurred in a cell containing a Jupyter shell command:
+
+- !*kaggle datasets download -d {KaggleDatasetPath} -p {DestinationFolder}*
+
+**Explaination:**
+The pycodestyle linter misinterpreted the shell flags -d and -p as Python operators.
+
+According to shell syntax, these must not include whitespace (e.g., - d would break the command).
+
+Therefore, although flagged by the linter, this is a false positive that should be ignored for shell commands.
+
+**Resolution:**
+The command was intentionally left unchanged to maintain correct execution.
+
+All other Python code in the notebook is fully PEP8-compliant.
 
 ### App Python File Validation
 
