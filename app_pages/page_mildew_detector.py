@@ -13,15 +13,19 @@ from src.machine_learning.predictive_analysis import (
 
 def page_mildew_detector_body():
     st.info(
-        "* The client wants to predict whether a given cherry leaf is healthy or infected with powdery mildew."
+        "* The client wants to predict whether a given cherry leaf is "
+        "healthy or infected with powdery mildew."
     )
 
     st.info(
-    "* Need a sample image to test? You can download healthy or infected cherry leaf images from [here](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)."
+        "* Need a sample image to test? You can download healthy or "
+        "infected cherry leaf images from [here]"
+        "(https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)."
     )
 
     st.write(
-        "* Upload a cherry leaf image. The model will classify it as **Healthy** or **Powdery Mildew** based on visual features."
+        "* Upload a cherry leaf image. The model will classify it as "
+        "**Healthy** or **Powdery Mildew** based on visual features."
     )
 
     st.write("---")
@@ -45,13 +49,20 @@ def page_mildew_detector_body():
             # Preprocess and predict
             img_tensor = resize_input_image(img=img_pil, version=version)
             pred_proba = model.predict(img_tensor)
-            pred_class = "Powdery Mildew" if pred_proba[0][0] > 0.5 else "Healthy"
+            pred_class = (
+                "Powdery Mildew" if pred_proba[0][0] > 0.5 else "Healthy"
+            )
 
             # Plot results
             plot_predictions_probabilities(pred_proba, pred_class)
 
             df_report = df_report._append(
-                {"Filename": image.name, "Prediction": pred_class,"Confidence (%)": round(float(np.squeeze(pred_proba)) * 100, 2)},
+                {
+                    "Filename": image.name,
+                    "Prediction": pred_class,
+                    "Confidence (%)": round(
+                        float(np.squeeze(pred_proba)) * 100, 2)
+                },
                 ignore_index=True
             )
 
@@ -59,4 +70,5 @@ def page_mildew_detector_body():
         if not df_report.empty:
             st.success("Prediction Summary")
             st.dataframe(df_report)
-            st.markdown(download_dataframe_as_csv(df_report), unsafe_allow_html=True)
+            st.markdown(
+                download_dataframe_as_csv(df_report), unsafe_allow_html=True)

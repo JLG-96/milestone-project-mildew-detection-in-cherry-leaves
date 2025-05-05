@@ -11,8 +11,11 @@ def page_ml_performance_metrics():
     st.write("### Train, Validation and Test Set: Labels Frequencies")
 
     try:
-        labels_distribution = imread(f"outputs/{version}/labels_distribution.png")
-        st.image(labels_distribution, caption='Labels Distribution on Train, Validation and Test Sets')
+        labels_distribution = imread(
+            f"outputs/{version}/labels_distribution.png")
+        st.image(
+            labels_distribution,
+            caption='Labels Distribution on Train, Validation and Test Sets')
     except FileNotFoundError:
         st.warning("Label distribution plot not found.")
     st.write("---")

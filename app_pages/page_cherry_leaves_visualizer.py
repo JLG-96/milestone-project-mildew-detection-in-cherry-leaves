@@ -12,8 +12,8 @@ def page_cherry_leaves_visualizer_body():
     st.write("### Cherry Leaf Visual Study")
 
     st.info(
-        "* The client is interested in a study that visually differentiates healthy cherry leaves "
-        "from those affected by powdery mildew."
+        "* The client is interested in a study that visually differentiates "
+        "healthy cherry leaves from those affected by powdery mildew."
     )
 
     version = 'v1'
@@ -23,34 +23,48 @@ def page_cherry_leaves_visualizer_body():
         avg_mildew = imread(f"outputs/{version}/avg_var_powdery_mildew.png")
 
         st.warning(
-            "* The average and variability images may not show obvious patterns to the naked eye, "
-            "but subtle differences in colour and texture are visible."
+            "* The average and variability images may not show obvious"
+            "patterns to the naked eye, but subtle differences in colour and"
+            "texture are visible."
         )
 
         st.image(avg_healthy, caption='Healthy Leaf - Average and Variability')
-        st.image(avg_mildew, caption='Powdery Mildew Leaf - Average and Variability')
+        st.image(
+            avg_mildew,
+            caption='Powdery Mildew Leaf - Average and Variability')
         st.write("---")
 
     if st.checkbox("Difference between class averages"):
         diff_image = imread(f"outputs/{version}/avg_diff.png")
 
         st.warning(
-            "* This shows pixel-level differences between average healthy and mildew-affected leaves."
+            "* This shows pixel-level differences between average healthy "
+            "and mildew-affected leaves."
         )
-        st.image(diff_image, caption='Difference Between Healthy and Mildew-Affected Leaves')
+        st.image(
+            diff_image,
+            caption='Difference Between Healthy and Mildew-Affected Leaves'
+        )
         st.write("---")
 
     if st.checkbox("Image Montage"):
-        st.write("* To refresh the montage, click on the **Create Montage** button")
+        st.write(
+            "* To refresh the montage, click on the **Create Montage** button"
+        )
         my_data_dir = 'inputs/cherry_leaves/cherry-leaves/validation'
 
         try:
             labels = os.listdir(my_data_dir)
         except FileNotFoundError:
-            st.error("Could not find validation folder. Please check your input path.")
+            st.error(
+                "Could not find validation folder. Please check your "
+                "input path."
+            )
             return
 
-        label_to_display = st.selectbox("Select label", options=labels, index=0)
+        label_to_display = st.selectbox(
+            "Select label", options=labels, index=0
+        )
 
         if st.button("Create Montage"):
             image_montage(
@@ -73,7 +87,8 @@ def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(15, 10)):
         return
 
     if label_to_display not in labels:
-        st.error(f"The label '{label_to_display}' does not exist in {dir_path}")
+        st.error(
+            f"The label '{label_to_display}' does not exist in {dir_path}")
         return
 
     images_list = os.listdir(os.path.join(dir_path, label_to_display))
@@ -94,7 +109,8 @@ def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(15, 10)):
         img = imread(img_path)
         shape = img.shape
         axes[plot_idx[i][0], plot_idx[i][1]].imshow(img)
-        axes[plot_idx[i][0], plot_idx[i][1]].set_title(f"{shape[1]}x{shape[0]}")
+        axes[plot_idx[i][0], plot_idx[i][1]].set_title(
+            f"{shape[1]}x{shape[0]}")
         axes[plot_idx[i][0], plot_idx[i][1]].axis("off")
 
     plt.tight_layout()
