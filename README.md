@@ -507,13 +507,13 @@ The application was manually tested across multiple devices and screen sizes to 
 
 ## Python Validation
 
-All Python code used in this project was validated to ensure correctness and alignment with PEP8 styling where possible.
+All Python code used in this project was validated to ensure correctness and full alignment with PEP8 styling.
 
 ### Jupyter Notebook Validation
 
 The three Jupyter notebooks were validated using `pycodestyle_magic`. The following steps were taken:
 
-1. Installed the necessary extension:
+1. Installed the extension:
 
    ```python
    !pip install pycodestyle_magic
@@ -526,37 +526,41 @@ The three Jupyter notebooks were validated using `pycodestyle_magic`. The follow
   %pycodestyle_on
   ```
 
-After running all cells, the notebooks showed no execution errors.
+After running all cells, the notebooks executed correctly and passed validation, with one known exception.
 
-**However**, during PEP8 validation using %pycodestyle_on, the following warning was triggered in the Data Collection notebook:
+**Shell Command Warning (False Positive)**
+During validation, the following warning appeared in the Data Collection notebook:
 
 - *E225: missing whitespace around operator*
 
-This occurred in a cell containing a Jupyter shell command:
+This was triggered in a shell command used to download the dataset:
 
 - !*kaggle datasets download -d {KaggleDatasetPath} -p {DestinationFolder}*
 
 **Explaination:**
-The pycodestyle linter misinterpreted the shell flags -d and -p as Python operators.
-
-According to shell syntax, these must not include whitespace (e.g., - d would break the command).
-
-Therefore, although flagged by the linter, this is a false positive that should be ignored for shell commands.
+The linter misinterpreted the shell flags -d and -p as Python operators that require spacing. However, adding whitespace here would break the shell command.
 
 **Resolution:**
-The command was intentionally left unchanged to maintain correct execution.
+The command was intentionally left unchanged. This warning is a false positive and can be safely ignored.
 
-All other Python code in the notebook is fully PEP8-compliant.
+All other code in the notebook is fully PEP8 compliant.
 
 ### App Python File Validation
 
-The main application files (app.py and files in the app_pages directory) were reviewed for PEP8 compliance using a PEP8 linter.
+All Python files in the `app.py` and `app_pages/` directory were reviewed using a standard PEP8 linter such as [pep8ci](https://pep8ci.herokuapp.com/).
 
-No critical errors were found, and the application runs without issue. Minor style warnings (e.g., line length) were similarly noted but did not require urgent correction.
+All warnings were corrected, including:
+
+- Line lengths exceeding 79 characters  
+- Missing whitespace around operators  
+- Long argument strings (refactored over multiple lines)
+
+At the time of submission, **no warnings or errors remain** across any `.py` files.
 
 ### Conclusion
 
-All critical Python code was validated and runs correctly. Minor style warnings were documented but did not affect the performance, clarity, or correctness of the project.
+All Python code in this project — both in Jupyter notebooks and standalone Python scripts — is now **fully PEP8 compliant**, with the exception of one justified shell syntax case (documented above).  
+All code executes correctly, adheres to styling standards, and has been reviewed using appropriate validation tools.
 
 ## Credits
 
