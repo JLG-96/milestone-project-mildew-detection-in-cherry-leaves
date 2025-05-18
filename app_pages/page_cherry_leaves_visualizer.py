@@ -23,8 +23,8 @@ def page_cherry_leaves_visualizer_body():
         avg_mildew = imread(f"outputs/{version}/avg_var_powdery_mildew.png")
 
         st.warning(
-            "* The average and variability images may not show obvious"
-            "patterns to the naked eye, but subtle differences in colour and"
+            "* The average and variability images may not show obvious "
+            "patterns to the naked eye, but subtle differences in colour and "
             "texture are visible."
         )
 
